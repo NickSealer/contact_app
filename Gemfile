@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.13'
 gem 'credit_card_validations'
-
+gem "sidekiq", "~> 5.1", ">= 5.1.3"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

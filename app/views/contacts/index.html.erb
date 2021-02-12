@@ -15,15 +15,15 @@
     <tbody>
       <% @contacts.each_with_index do |contact, index| %>
         <tr>
-          <td class="<%= contact.name.include?("Error") ? "bg-danger" : "" %>"><%= contact.name %></td>
-          <td class="<%= contact.birthdate ? "" : "bg-danger" %>"><%= contact.birthdate ? formated_date(contact.birthdate) : "Error: Invalid date" %></td>
-          <td class="<%= contact.phone.include?("Error") ? "bg-danger" : "" %>"><%= contact.phone %></td>
-          <td class="<%= contact.address.include?("Error") ? "bg-danger" : "" %>"><%= contact.address %></td>
-          <td class="<%= contact.credit_card.include?("Error") ? "bg-danger" : "" %>">
-            <%= contact.is_valid ? retrieve_card(contact.credit_card) : contact.credit_card %>
+          <td class="<%= contact.name.include?("Error") ? "table-danger" : "" %>"><%= contact.name %></td>
+          <td class="<%= contact.birthdate ? "" : "table-danger" %>"><%= contact.birthdate ? formated_date(contact.birthdate) : "Error: Invalid date" %></td>
+          <td class="<%= contact.phone.include?("Error") ? "table-danger" : "" %>"><%= contact.phone %></td>
+          <td class="<%= contact.address.include?("Error") ? "table-danger" : "" %>"><%= contact.address %></td>
+          <td class="<%= contact.credit_card.include?("Error") ? "table-danger" : "" %>">
+            <%= !contact.credit_card.include?("Error") ? retrieve_card(contact.credit_card) : contact.credit_card %>
             <br><small><%= contact.franchise %></small>
           </td>
-          <td class="<%= contact.email.include?("Error") ? "bg-danger" : "" %>"><%= contact.email %></td>
+          <td class="<%= contact.email.include?("Error") ? "table-danger" : "" %>"><%= contact.email %></td>
         </tr>
       <% end %>
     </tbody>

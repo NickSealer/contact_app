@@ -11,7 +11,7 @@
 
     <tbody>
       <% @documents.each do |document| %>
-        <tr>
+        <tr class="<%= status_color(document.status) %>">
           <td><%= document.name %></td>
           <td><%= document.status %></td>
           <td><%= link_to document.name, document.file %></td>

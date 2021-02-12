@@ -10,8 +10,9 @@ class Contacts::CreateContactFromCSV
     contacts_count = 0
     errors = 0
     message = ""
+    failed = false
 
-    csv_text = File.read(@csv_file.path)
+    csv_text = File.read(@csv_file)
     csv = CSV.parse(csv_text, headers: true, col_sep: ',')
 
     csv.each do |contact_array|
@@ -37,8 +38,10 @@ class Contacts::CreateContactFromCSV
       contacts_count += 1 if contact.is_valid && contact_created
       errors += 1 unless contact.is_valid
       message += "#{msg}"
+      failed = true if errors >= 1
     end
 
-    [contacts_count, errors, message]
+    contacts_count = 1 if contacts_count < 1
+    [contacts_count, errors, message, failed]
   end
 end

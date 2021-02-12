@@ -7,15 +7,17 @@ class Contacts::Validations
 
   def process
     @is_valid = false
-    @contact.name, @is_valid = validate_name(@contact.name)
-    @contact.birthdate, @is_valid = validate_birthdate(@contact.birthdate)
-    @contact.phone, @is_valid = validate_phone(@contact.phone)
-    @contact.address, @is_valid = validate_address(@contact.address)
-    @contact.email, @is_valid = validate_email(@contact.email)
+    @contact.name, valid_name = validate_name(@contact.name)
+    @contact.birthdate, valid_birthdate = validate_birthdate(@contact.birthdate)
+    @contact.phone, valid_phone = validate_phone(@contact.phone)
+    @contact.address, valid_address = validate_address(@contact.address)
+    @contact.email, valid_email = validate_email(@contact.email)
 
-    card_fields, @is_valid = validate_credit_card(@contact.credit_card)
+    card_fields, valid_card = validate_credit_card(@contact.credit_card)
     @contact.credit_card = card_fields[:credit_card]
-    @contact.franchise = card_fields[:franchise] if @is_valid
+    @contact.franchise = card_fields[:franchise] if valid_card
+
+    @is_valid = true if (valid_name && valid_birthdate && valid_phone && valid_address && valid_email && valid_card)
 
     [@is_valid, @contact]
   end
