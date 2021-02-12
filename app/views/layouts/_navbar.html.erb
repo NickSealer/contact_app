@@ -8,21 +8,28 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" type="button" id="dropdownContacts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" type="button" id="dropdownContacts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Contacts">
           Contacts
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownContacts">
-          <%= link_to "Contacts", contacts_path(status: 1), class:"dropdown-item" %>
-          <%= link_to "Contacts Errors", contacts_path(status: 0), class:"dropdown-item" %>
+          <%= link_to "Contacts", contacts_path(status: 1), class:"dropdown-item", title: "Contacts" %>
+          <%= link_to "Contacts Errors", contacts_path(status: 0), class:"dropdown-item", title: "Contacts Errors" %>
         </div>
       </li>
       <li class="nav-item">
-        <%= link_to "Documents", documents_path, class: "nav-link linked", type: "button" %>
+        <%= link_to "Documents", documents_path, class: "nav-link linked", type: "button", title: "Documents" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" type="button" data-toggle="modal" data-target="#csv_modal">
+        <a class="nav-link" type="button" data-toggle="modal" data-target="#csv_modal" title="Upload CSV">
           Upload CSV
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link linked">
+        <%= current_user.email %></a>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link linked', title: "Logout" %>
       </li>
     </ul>
   </div>
