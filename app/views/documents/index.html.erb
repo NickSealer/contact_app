@@ -1,23 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Documents</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Doc status</th>
-      <th>User</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @documents.each do |document| %>
+<div class="container-fluid py-3">
+  <h1>Documents</h1>
+  <table class="table table-hover">
+    <thead class="table-primary">
       <tr>
-        <td><%= document.doc_status %></td>
-        <td><%= document.user %></td>
+        <th>Name</th>
+        <th>Status</th>
+        <th>File</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <td><%= document.name %></td>
+          <td><%= document.status %></td>
+          <td><%= link_to document.name, document.file %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="digg_pagination">
+    <%= will_paginate @documents, :container => false %>
+  </div>
+</div>

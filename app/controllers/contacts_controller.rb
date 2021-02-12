@@ -13,12 +13,14 @@ class ContactsController < ApplicationController
 
   def import_csv
     csv_file = params[:csv_file]
-    
+
     if csv_file.present? && File.extname(csv_file.original_filename) == '.csv'
+      document_created, document = Documents::CreateDocument.new(params, current_user).process
       contacts_loaded, errors, msg = Contacts::CreateContactFromCSV.new(csv_file, current_user.id).process
+
       redirect_to root_url, notice: "Notice: #{contacts_loaded} contacts loaded successfully. | Error: #{errors} contacts loaded with invalid data. | #{msg}"
     else
-      redirect_to root_url, alert: "An error has ocurred. Please verify file extension."
+      redirect_to root_url, alert: "An error has ocurred. Please verify if is a CSV file."
     end
   end
 

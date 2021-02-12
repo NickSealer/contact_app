@@ -1,17 +1,8 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_document, only: %i[ show ]
 
   def index
-    @documents = Document.all
+    @documents = Document.includes(:user).where(user_id: current_user.id).order(:name).paginate(page: params[:page], per_page: 10)
   end
-
-  def show
-  end
-
-  private
-    def set_document
-      @document = Document.find(params[:id])
-    end
 
 end
