@@ -1,0 +1,35 @@
+<div class="container-fluid py-3">
+  <h1>My Contacts</h1>
+  <table class="table table-hover">
+    <thead class="table-info">
+      <tr>
+        <th>Name</th>
+        <th>Birthdate</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Credit card</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contacts.each_with_index do |contact, index| %>
+        <tr>
+          <td class="<%= contact.name.include?("Error") ? "bg-danger" : "" %>"><%= contact.name %></td>
+          <td class="<%= contact.birthdate ? "" : "bg-danger" %>"><%= contact.birthdate ? formated_date(contact.birthdate) : "Error: Invalid date" %></td>
+          <td class="<%= contact.phone.include?("Error") ? "bg-danger" : "" %>"><%= contact.phone %></td>
+          <td class="<%= contact.address.include?("Error") ? "bg-danger" : "" %>"><%= contact.address %></td>
+          <td class="<%= contact.credit_card.include?("Error") ? "bg-danger" : "" %>">
+            <%= contact.is_valid ? retrieve_card(contact.credit_card) : contact.credit_card %>
+            <br><small><%= contact.franchise %></small>
+          </td>
+          <td class="<%= contact.email.include?("Error") ? "bg-danger" : "" %>"><%= contact.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="digg_pagination">
+    <%= will_paginate @contacts, :container => false %>
+  </div>
+</div>

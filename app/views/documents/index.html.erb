@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Documents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Doc status</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.doc_status %></td>
+        <td><%= document.user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
