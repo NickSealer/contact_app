@@ -9,12 +9,8 @@ class Contacts::CreateContact
 
     exist = Contact.where(email: @params[:email], user_id: @user_id).first
     if exist
-      return [false, exist, msg = "Notice: Already exist #{exist.try(:email)}, "] if exist.is_valid
-
-      updated, contact_updated = Contacts::UpdateContact.new(exist, @params).process unless exist.is_valid
-      success_msg = "| Notice: Contact updated #{contact_updated.try(:email)}, "
-      error_msg = "| Error: Invalid fields in #{contact_updated.try(:email) ? contact_updated.try(:email) : contact_updated.id}"
-      return [updated, contact_updated, msg = updated ? success_msg : error_msg]
+      updated, contact_updated = Contacts::UpdateContact.new(exist, @params).process
+      return [updated, contact_updated]
     end
 
     contact = Contact.new()

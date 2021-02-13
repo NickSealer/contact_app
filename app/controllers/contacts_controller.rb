@@ -19,7 +19,7 @@ class ContactsController < ApplicationController
       # contacts_loaded, errors, msg = Contacts::CreateContactFromCSV.new(csv_file, current_user.id).process
 
       LoadFileJob.perform_later(document, current_user)
-      redirect_to root_url, notice: "Notice: file loaded successfully."
+      redirect_to documents_url, notice: "Notice: file loaded successfully."
     else
       redirect_to root_url, alert: "An error has ocurred. Please verify if is a CSV file."
     end

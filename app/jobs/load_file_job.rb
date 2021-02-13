@@ -6,8 +6,8 @@ class LoadFileJob < ApplicationJob
     url = active_storage_disk_service.send(:path_for, document.file.blob.key)
 
     document.update_attributes(status: "Processing")
-    contacts_loaded, errors, msg, failed = Contacts::CreateContactFromCSV.new(url, current_user.id).process
-    document.update_attributes(status: "Success") if contacts_loaded >= 1
-    document.update_attributes(status: "Failed") if failed
+    success = Contacts::CreateContactFromCSV.new(url, current_user.id).process
+    document.update_attributes(status: "Success") if success
+    document.update_attributes(status: "Failed") unless success
   end
 end
