@@ -5,29 +5,30 @@
 #
 # development:
 #   <<: *default
-#   database: myapp_development
+#   database: contact_development
 #   username: username
-#   password: '12345678'
+#   password: '123456789'
 #   host: localhost
 #   port: 5432
 #
 # test:
 #   <<: *default
-#   database: myapp_test
+#   database: contact_test
 #   username: username
-#   password: '12345678'
+#   password: '123456789'
 #   host: localhost
 #   port: 5432
 #
 # production:
 #   <<: *default
-#   database: myapp_production
+#   database: contact_production
 #   username: myapp
 #   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 
 
 # PARA HEROKU
 # Postgreslq configs
+
 default: &default
   adapter: postgresql
   encoding: unicode

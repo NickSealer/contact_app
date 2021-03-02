@@ -5,9 +5,9 @@ class ContactsController < ApplicationController
 
   def index
     if params[:status].present? && !params[:status].blank?
-      @contacts = Contact.includes(:user).where(user_id: current_user.id, is_valid: params[:status]).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+      @contacts = current_user.contacts.where(is_valid: params[:status]).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     else
-      @contacts = Contact.includes(:user).where(user_id: current_user.id, is_valid: true).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+      @contacts = current_user.contacts.valid.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     end
   end
 
@@ -36,7 +36,7 @@ class ContactsController < ApplicationController
 
   private
     def set_contact
-      @contact = Contact.find(params[:id])
+      @contact = current_user.contacts.find(params[:id])
     end
 
 end

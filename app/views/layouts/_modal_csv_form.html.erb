@@ -9,11 +9,11 @@
       </div>
       <div class="modal-body">
         <div class="alert alert-info" role="alert">
-          We advise download <a href="<%= contact_layout_csv_path(format: "csv") %>" class="alert-link">csv layout</a> to uploading.
+          We advise download <a href="<%= download_csv_contacts_path(format: "csv") %>" class="alert-link">csv layout</a> to uploading.
         </div>
-        <%= link_to "download layout", contact_layout_csv_path(format: "csv"), class: "btn btn-outline-primary my-2 my-sm-0 mr-sm-2", id: "download-csv" %>
+        <%= link_to "download layout", download_csv_contacts_path(format: "csv"), class: "btn btn-outline-primary my-2 my-sm-0 mr-sm-2", id: "download-csv" %>
         <br><br>
-        <%= form_tag(import_contact_csv_path(), method: :post, multipart: true) do |form| %>
+        <%= form_tag(import_csv_contacts_path(), method: :post, multipart: true) do |form| %>
           <div class="hidden_form">
             <div class="input-group">
               <div class="custom-file">
