@@ -1,9 +1,9 @@
 class Contacts::CreateContactFromCSV
   require 'csv'
 
-  def initialize(csv_file, user_id)
+  def initialize(csv_file, current_user)
     @csv_file = csv_file
-    @user_id = user_id
+    @current_user = current_user
   end
 
   def process
@@ -30,9 +30,9 @@ class Contacts::CreateContactFromCSV
       params[:address] = address
       params[:credit_card] = credit_card
       params[:email] = email
-      params[:user_id] = @user_id
+      params[:user_id] = @current_user.id
 
-      contact_created, contact = Contacts::CreateContact.new(params, @user_id).process
+      contact_created, contact = Contacts::CreateContact.new(params, @current_user).process
       contacts_count += 1 if contact.is_valid && contact_created
       success = true if contacts_count >= 1
       success = false if contacts_count < 1

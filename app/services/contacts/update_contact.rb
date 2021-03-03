@@ -13,11 +13,15 @@ class Contacts::UpdateContact
     @contact.credit_card = @params[:credit_card]
     @contact.email = @params[:email]
 
-    validated, contact_updated = Contacts::Validations.new(@contact).process
-    contact_updated.is_valid = validated
-    contact_updated.save
+    success = @contact.save
+    
+    if success
+      [success, @contact]
+    else
+      success = false
+      [success, false]
+    end
 
-    [validated, contact_updated]
   end
 
 end

@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_02_12_015714) do
     t.string "credit_card_type"
     t.string "franchise"
     t.string "email"
-    t.boolean "is_valid", default: true
+    t.boolean "is_valid", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
