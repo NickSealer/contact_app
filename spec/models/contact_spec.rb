@@ -1,8 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
+
+  before do
+    @valid_contact_params = {
+      name: 'Valid-name',
+      birthdate: '1990-01-01',
+      phone: '(+57) 123 123-12-12',
+      address: 'Address',
+      email: 'email@email.com',
+      credit_card: '4111111111111111'
+    }
+
+    @invalid_contact_params = {
+      name: nil,
+      birthdate: nil,
+      phone: nil,
+      address: nil,
+      email: nil,
+      credit_card: nil
+    }
+
+    @valid_contact = Contact.new(@valid_contact_params)
+    @invalid_contact = Contact.new(@invalid_contact_params)
+  end
+
+  it 'is invalid' do
+    @invalid_contact.valid_contact?
+    expect(@invalid_contact.is_valid).to be(false)
+  end
+
+  it 'is valid' do
+    @valid_contact.valid_contact?
+    expect(@valid_contact.is_valid).to be(true)
+  end
+
   context 'validation' do
-    it 'has invalid name wiht wrong format' do
+    it 'has invalid name with wrong format' do
       contact = Contact.new(name: 'invalid_name')
       expect(contact.validate_name).to include('Error')
     end
@@ -32,30 +66,21 @@ RSpec.describe Contact, type: :model do
       expect(contact.validate_credit_card).to contain_exactly('Error: Invalid Credit card', nil)
     end
 
-    it 'is invalid contact' do
-      contact = Contact.new(
-        name: nil,
-        birthdate: nil,
-        phone: nil,
-        address: nil,
-        email: nil,
-        credit_card: nil
-      )
-      contact.valid_contact?
-      expect(contact.is_valid).to be(false)
+  end
+
+  context "search contacts by 'valid' scope" do
+    before do
+      @user = User.create_with(password: '123456789').find_or_create_by(email: 'email@email.com')
+      @contact_1 = @user.contacts.create(@valid_contact_params)
+      @contact_2 = @user.contacts.create(@invalid_contact_params)
     end
 
-    it "is valid contact" do
-      contact = Contact.new(
-        name: "Valid-name",
-        birthdate: "1990-01-01",
-        phone: "(+57) 123 123-12-12",
-        address: "Address",
-        email: "email@email.com",
-        credit_card: "4111111111111111"
-      )
-      contact.valid_contact?
-      expect(contact.is_valid).to be(true)
+    it 'return contacts that are valids' do
+      expect(@user.contacts.valid).to include(@contact_1)
+    end
+
+    it "return contacts that aren't valids" do
+      expect(@user.contacts.valid).not_to include(@contact_2)
     end
   end
 end
