@@ -88,6 +88,11 @@ GEM
     diff-lcs (1.4.4)
     erubi (1.10.0)
     execjs (2.7.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     fastercsv (1.5.5)
     ffi (1.14.2)
     figaro (1.2.0)
@@ -257,6 +262,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   credit_card_validations
   devise
+  factory_bot_rails
   fastercsv
   figaro
   jbuilder (~> 2.5)

@@ -83,4 +83,14 @@ RSpec.describe Contact, type: :model do
       expect(@user.contacts.valid).not_to include(@contact_2)
     end
   end
+
+  context "generate contact factory" do
+    it "valid factory" do
+      contact = FactoryBot.create(:contact, :birthdate_100_year_ago)
+      puts "Factory: #{contact.inspect}"
+      puts "Association: #{contact.user.inspect}"
+      expect(contact.user).to be_truthy
+    end
+  end
+
 end
