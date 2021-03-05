@@ -1,7 +1,11 @@
 class ContactsController < ApplicationController
   require 'csv'
   before_action :authenticate_user!
-  before_action :set_contact, only: %i[ show ]
+  before_action :set_contact, only: %i[ show edit update destroy ]
+
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    redirect_to root_url, alert: "Record not found."
+  end
 
   def index
     if params[:status].present? && !params[:status].blank?
@@ -9,6 +13,37 @@ class ContactsController < ApplicationController
     else
       @contacts = current_user.contacts.valid.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def new
+  end
+
+  def create
+    @contact = current_user.contacts.new(contact_params)
+    if @contact.save
+      redirect_to root_url, notice: "OK"
+    else
+      render :new
+    end
+  end
+
+  def update
+    if @contact.update(contact_params)
+      redirect_to @contact, notice: "Updated OK"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @contact.destroy
+    redirect_to root_url, notice: "Delete OK"
   end
 
   def import_csv
@@ -35,6 +70,10 @@ class ContactsController < ApplicationController
   end
 
   private
+    def contact_params
+      params.require(:contact).permit(:name, :birthdate, :phone, :address, :email, :credit_card)
+    end
+
     def set_contact
       @contact = current_user.contacts.find(params[:id])
     end

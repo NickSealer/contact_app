@@ -5,6 +5,8 @@ class Contact < ApplicationRecord
 
   before_save :valid_contact?
 
+  validates_presence_of :name # validation added to test request with invalida data
+
   scope :valid, -> { where(is_valid: true) }
 
   def valid_contact?

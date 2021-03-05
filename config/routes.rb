@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'contacts#index'
-  resources :contacts, :only => [ :index ] do
+  resources :contacts do
     collection do
       get :download_csv
       post :import_csv
