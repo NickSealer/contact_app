@@ -5,7 +5,7 @@ class Contact < ApplicationRecord
 
   before_save :valid_contact?
 
-  validates_presence_of :name # validation added to test request with invalida data
+  validates_presence_of :name # validation added to test data controller 150 and servise test 18
 
   scope :valid, -> { where(is_valid: true) }
 
@@ -65,6 +65,7 @@ class Contact < ApplicationRecord
     if !credit_card.blank? && validator.valid?
       self.credit_card = encrypt_number(validator.number)
       self.franchise = validator.brand.to_s
+      binding.pry
       [credit_card, franchise]
     else
       self.credit_card = 'Error: Invalid Credit card'

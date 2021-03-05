@@ -20,7 +20,7 @@ class Contacts::CreateContact
     contact.address = @params[:address]
     contact.credit_card = @params[:credit_card]
     contact.email = @params[:email]
-    contact.user_id = @params[:user_id]
+    contact.user = @current_user
 
     success = contact.save
 

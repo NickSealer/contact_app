@@ -278,7 +278,6 @@ RSpec.describe ContactsController, type: :controller do
       it "respond to csv output" do
         sign_in @user
         get :download_csv, format: :csv
-        binding.pry
         expect(response.content_type).to eq("text/csv")
       end
 
