@@ -22,6 +22,29 @@ RSpec.describe ContactsController, type: :controller do
         get :index
         expect(response).to have_http_status 200
       end
+
+      it "should get index with status 1" do
+        sign_in @user
+        get :index, params: {status: 1}
+        expect(response.request.params).to include('status')
+        expect(response.request.params[:status]).to eq('1')
+        expect(response.request.params[:status].present?).to be_truthy
+      end
+
+      it "should get index with status 0" do
+        sign_in @user
+        get :index, params: {status: 0}
+        expect(response.request.params).to include('status')
+        expect(response.request.params[:status]).to eq('0')
+        expect(response.request.params[:status].present?).to be_truthy
+      end
+
+      it "should fail if status params is not present" do
+        sign_in @user
+        get :index, params: {other_status: 1}
+        expect(response.request.params).not_to include('status')
+        expect(response.request.params[:status].present?).to be_falsey
+      end
     end
 
     context "no authenticate user" do
@@ -294,5 +317,39 @@ RSpec.describe ContactsController, type: :controller do
         expect(response).to have_http_status 401
       end
     end
+
+  describe "#import_csv" do
+
+    before do
+      @document = fixture_file_upload("#{Rails.root.to_s}/public/test_csv.csv", "text/csv")
+      @wrong_document = fixture_file_upload("#{Rails.root.to_s}/public/test_csv.jpg", "image/jpg")
+    end
+
+    context "authenticate user" do
+      it "has valid format" do
+        sign_in @user
+        post :import_csv, params: { csv_file: @document }
+        expect(response).to redirect_to documents_path
+      end
+
+      it "has invalid format" do
+        sign_in @user
+        post :import_csv, params: { csv_file: @wrong_document }
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "no authenticate user" do
+      it "redirect_to sign_in" do
+        post :import_csv, params: { csv_file: @document }
+        expect(response).to redirect_to new_user_session_path
+      end
+
+      it "returns 302 response" do
+        post :import_csv, params: { csv_file: @document }
+        expect(response).to have_http_status 302
+      end
+    end
+  end
 
 end

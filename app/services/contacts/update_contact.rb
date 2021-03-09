@@ -12,16 +12,7 @@ class Contacts::UpdateContact
     @contact.address = @params[:address]
     @contact.credit_card = @params[:credit_card]
     @contact.email = @params[:email]
-
-    success = @contact.save
-    
-    if success
-      [success, @contact]
-    else
-      success = false
-      [success, false]
-    end
-
+    @contact.save
   end
 
 end

@@ -48,6 +48,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pg', '~> 1.2', '>= 1.2.3'
   gem 'pry'
+  gem 'rubocop'
+  gem 'simplecov'
 end
 
 group :production do

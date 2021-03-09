@@ -27,7 +27,7 @@ class ContactsController < ApplicationController
   def create
     @contact = current_user.contacts.new(contact_params)
     if @contact.save
-      redirect_to root_url, notice: "OK"
+      redirect_to root_url, notice: "Created OK"
     else
       render :new
     end
@@ -43,17 +43,14 @@ class ContactsController < ApplicationController
 
   def destroy
     @contact.destroy
-    redirect_to root_url, notice: "Delete OK"
+    redirect_to root_url, notice: "Deleted OK"
   end
 
   def import_csv
     csv_file = params[:csv_file]
 
     if csv_file.present? && File.extname(csv_file.original_filename) == '.csv'
-      document_created, document = Documents::CreateDocument.new(params, current_user).process
-      # contacts_loaded, errors, msg = Contacts::CreateContactFromCSV.new(csv_file, current_user.id).process
-
-      LoadFileJob.perform_later(document, current_user)
+      Documents::CreateDocument.new(params, current_user).process
       redirect_to documents_url, notice: "Notice: file loaded successfully."
     else
       redirect_to root_url, alert: "An error has ocurred. Please verify if is a CSV file."

@@ -32,8 +32,9 @@ class Contacts::CreateContactFromCSV
       params[:email] = email
       params[:user_id] = @current_user.id
 
-      contact_created, contact = Contacts::CreateContact.new(params, @current_user).process
-      contacts_count += 1 if contact.is_valid && contact_created
+      contact = Contacts::CreateContact.new(params, @current_user).process
+      
+      contacts_count += 1 if contact.is_valid
       success = true if contacts_count >= 1
       success = false if contacts_count < 1
     end

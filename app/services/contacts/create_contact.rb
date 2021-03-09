@@ -7,10 +7,10 @@ class Contacts::CreateContact
 
   def process
 
-    exist = @current_user.contacts.where(email: @params[:email]).last
-    if exist
-      updated, contact_updated = Contacts::UpdateContact.new(exist, @params).process
-      return [updated, contact_updated]
+    contact_found = @current_user.contacts.where(email: @params[:email]).last
+    if contact_found
+      Contacts::UpdateContact.new(contact_found, @params).process
+      return contact_found
     end
 
     contact = Contact.new()
@@ -22,14 +22,8 @@ class Contacts::CreateContact
     contact.email = @params[:email]
     contact.user = @current_user
 
-    success = contact.save
-
-    if success
-      [success, contact]
-    else
-      success = false
-      [success, false]
-    end
+    return false unless contact.save
+    contact
 
   end
 

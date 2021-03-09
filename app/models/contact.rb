@@ -5,7 +5,11 @@ class Contact < ApplicationRecord
 
   before_save :valid_contact?
 
-  validates_presence_of :name # validation added to test data controller 150 and servise test 18
+  # This validation is just for validate correct unit test on
+  # contacts_controller_spec 150
+  # create_contact_spec service 19
+  # update_contact_spec service 20
+  validates :name, presence: true
 
   scope :valid, -> { where(is_valid: true) }
 
@@ -46,6 +50,10 @@ class Contact < ApplicationRecord
                  else
                    'Error: Invalid phone'
                  end
+
+   # return unless !phone.blank? && phone.match?(/[(][+]\d{1,2}[)]\s{1,1}\d{3,3}[\s-]\d{3,3}[\s-]\d{2,2}[\s-]\d{2,2}$/)
+   #
+   # self.import_errors += 'Error: Invalid phone'
   end
 
   def validate_address
@@ -65,7 +73,6 @@ class Contact < ApplicationRecord
     if !credit_card.blank? && validator.valid?
       self.credit_card = encrypt_number(validator.number)
       self.franchise = validator.brand.to_s
-      binding.pry
       [credit_card, franchise]
     else
       self.credit_card = 'Error: Invalid Credit card'

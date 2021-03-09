@@ -14,14 +14,7 @@ class Documents::CreateDocument
                          filename: File.basename(@params[:csv_file].original_filename, ".*"),
                          content_type: @params[:csv_file].content_type)
 
-    success = document.save
-
-    if success
-      [success, document]
-    else
-      success = false
-      [success, false]
-    end
+    LoadFileJob.perform_later(document, @current_user) if document.save
   end
 
 end
