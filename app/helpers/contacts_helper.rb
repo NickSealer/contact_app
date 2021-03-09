@@ -8,6 +8,10 @@ module ContactsHelper
     "●●●●●●●●#{number[number.size-4..number.size-1]}"
   end
 
+  def contacts_error_color(truly)
+    truly ? "table-danger" : ''
+  end
+
   private
     def spanish_month(month)
       case month

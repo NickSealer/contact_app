@@ -15,15 +15,15 @@
     <tbody>
       <% @contacts.each_with_index do |contact, index| %>
         <tr>
-          <td class="<%= contact.name.include?("Error") ? "table-danger" : "" %>"><%= contact.name %></td>
-          <td class="<%= contact.birthdate ? "" : "table-danger" %>"><%= contact.birthdate ? formated_date(contact.birthdate) : "Error: Invalid date" %></td>
-          <td class="<%= contact.phone.include?("Error") ? "table-danger" : "" %>"><%= contact.phone %></td>
-          <td class="<%= contact.address.include?("Error") ? "table-danger" : "" %>"><%= contact.address %></td>
-          <td class="<%= contact.credit_card.include?("Error") ? "table-danger" : "" %>">
+          <td class="<%=  contacts_error_color contact.name.include?("Error") %>"><%= contact.name %></td>
+          <td class="<%= contacts_error_color contact.birthdate.blank? %>"><%= contact.birthdate ? formated_date(contact.birthdate) : "Error: Invalid date" %></td>
+          <td class="<%= contacts_error_color contact.phone.include?("Error") %>"><%= contact.phone %></td>
+          <td class="<%= contacts_error_color contact.address.include?("Error") %>"><%= contact.address %></td>
+          <td class="<%= contacts_error_color contact.credit_card.include?("Error") %>">
             <%= !contact.credit_card.include?("Error") ? retrieve_card(contact.credit_card) : contact.credit_card %>
             <br><small><%= contact.franchise %></small>
           </td>
-          <td class="<%= contact.email.include?("Error") ? "table-danger" : "" %>"><%= contact.email %></td>
+          <td class="<%= contacts_error_color contact.email.include?("Error") %>"><%= contact.email %></td>
         </tr>
       <% end %>
     </tbody>
