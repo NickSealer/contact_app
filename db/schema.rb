@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2021_02_12_015714) do
     t.string "phone"
     t.string "address"
     t.string "credit_card"
-    t.string "credit_card_type"
-    t.string "franchise"
+    t.string "brand"
     t.string "email"
+    t.jsonb "import_errors", default: {}
     t.boolean "is_valid", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false

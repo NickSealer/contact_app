@@ -6,6 +6,7 @@ class Contacts::UpdateContact
   end
 
   def process
+    @contact.import_errors = {}
     @contact.name = @params[:name]
     @contact.birthdate = @params[:birthdate]
     @contact.phone = @params[:phone]

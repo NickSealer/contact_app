@@ -19,7 +19,7 @@ class ContactsTest < ApplicationSystemTestCase
     fill_in "Credit card", with: @contact.credit_card
     fill_in "Credit card type", with: @contact.credit_card_type
     fill_in "Email", with: @contact.email
-    fill_in "Franchise", with: @contact.franchise
+    fill_in "Franchise", with: @contact.brand
     fill_in "Name", with: @contact.name
     fill_in "Phone", with: @contact.phone
     fill_in "User", with: @contact.user_id
@@ -38,7 +38,7 @@ class ContactsTest < ApplicationSystemTestCase
     fill_in "Credit card", with: @contact.credit_card
     fill_in "Credit card type", with: @contact.credit_card_type
     fill_in "Email", with: @contact.email
-    fill_in "Franchise", with: @contact.franchise
+    fill_in "Franchise", with: @contact.brand
     fill_in "Name", with: @contact.name
     fill_in "Phone", with: @contact.phone
     fill_in "User", with: @contact.user_id

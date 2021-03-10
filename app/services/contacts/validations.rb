@@ -15,7 +15,7 @@ class Contacts::Validations
 
     card_fields, valid_card = validate_credit_card(@contact.credit_card)
     @contact.credit_card = card_fields[:credit_card]
-    @contact.franchise = card_fields[:franchise] if valid_card
+    @contact.brand = card_fields[:brand] if valid_card
 
     @is_valid = true if (valid_name && valid_birthdate && valid_phone && valid_address && valid_email && valid_card)
 
@@ -62,11 +62,11 @@ class Contacts::Validations
       fields = {}
       if !credit_card.blank? && validator.valid?
         fields[:credit_card] = encrypt_number(validator.number)
-        fields[:franchise] = validator.brand.to_s
+        fields[:brand] = validator.brand.to_s
         [fields, true]
       else
         fields[:credit_card] = "Error: Invalid Credit card"
-        fields[:franchise] = ""
+        fields[:brand] = ""
         [fields, false]
       end
     end

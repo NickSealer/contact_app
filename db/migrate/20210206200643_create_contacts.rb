@@ -6,9 +6,9 @@ class CreateContacts < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :address
       t.string :credit_card
-      t.string :credit_card_type
-      t.string :franchise
+      t.string :brand
       t.string :email
+      t.jsonb :import_errors, default: {}
       t.boolean :is_valid, default: false
       t.references :user, foreign_key: true
 

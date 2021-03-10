@@ -12,7 +12,7 @@ RSpec.describe Contacts::UpdateContact, type: :model do
       it "updates contact" do
         @contact_params[:name] = "Name changed"
         Contacts::UpdateContact.new(@contact, @contact_params).process
-        expect(@contact.name).to eq("Name changed")
+        expect(@contact.import_errors.present?).not_to be(true)
       end
     end
 
@@ -20,7 +20,7 @@ RSpec.describe Contacts::UpdateContact, type: :model do
       it "does not update contact" do
         @contact_params[:name] = nil
         Contacts::UpdateContact.new(@contact, @contact_params).process
-        expect(@contact.name).to be(nil)
+        expect(@contact.import_errors.present?).to be(true)
       end
     end
   end

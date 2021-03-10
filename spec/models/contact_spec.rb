@@ -25,47 +25,82 @@ RSpec.describe Contact, type: :model do
     @invalid_contact = Contact.new(@invalid_contact_params)
   end
 
-  it 'is invalid' do
-    @invalid_contact.valid_contact?
-    expect(@invalid_contact.is_valid).to be(false)
+  context "contact data" do
+    it 'is invalid' do
+      @invalid_contact.valid_contact?
+      expect(@invalid_contact.is_valid).to be(false)
+    end
+
+    it 'is valid' do
+      @valid_contact.valid_contact?
+      expect(@valid_contact.is_valid).to be(true)
+    end
   end
 
-  it 'is valid' do
-    @valid_contact.valid_contact?
-    expect(@valid_contact.is_valid).to be(true)
-  end
+  describe 'validations' do
+    context 'has valid data' do
+      it 'has name with right format' do
+        contact = Contact.new(name: 'Valid name')
+        expect(contact.validate_name).to be_nil
+      end
 
-  context 'validation' do
-    it 'has invalid name with wrong format' do
-      contact = Contact.new(name: 'invalid_name')
-      expect(contact.validate_name).to include('Error')
+      it 'has birthdate with right format' do
+        contact = Contact.new(birthdate: '1985/06/22')
+        expect(contact.validate_birthdate).to be_nil
+      end
+
+      it 'has phone with right format' do
+        contact = Contact.new(phone: '(+57) 123 456 78 90')
+        expect(contact.validate_phone).to be_nil
+      end
+
+      it 'has address with right data ' do
+        contact = Contact.new(address: 'Street 46 avenue')
+        expect(contact.validate_address).to be_nil
+      end
+
+      it 'has email with right format' do
+        contact = Contact.new(email: 'some-email@email.com')
+        expect(contact.validate_email).to be_nil
+      end
+
+      it 'has credit card with right data' do
+        contact = Contact.new(credit_card: '4111111111111111')
+        expect(contact.validate_credit_card).not_to include(nil)
+      end
     end
 
-    it 'has invalid birthdate with wrong format' do
-      contact = Contact.new(birthdate: 'invalid date')
-      expect(contact.validate_birthdate).to be_nil
-    end
+    context 'has invalid data' do
+      it 'has invalid name with wrong format' do
+        contact = Contact.new(name: 'invalid_name')
+        expect(contact.validate_name).to include('Error')
+      end
 
-    it 'has invalid phone with wrong format' do
-      contact = Contact.new(phone: 'invalid phone')
-      expect(contact.validate_phone).to include('Error')
-    end
+      it 'has invalid birthdate with wrong format' do
+        contact = Contact.new(birthdate: 'invalid date')
+        expect(contact.validate_birthdate).to include('Error')
+      end
 
-    it 'has invalid address with empty data ' do
-      contact = Contact.new(address: nil)
-      expect(contact.validate_address).to include('Error')
-    end
+      it 'has invalid phone with wrong format' do
+        contact = Contact.new(phone: 'invalid phone')
+        expect(contact.validate_phone).to include('Error')
+      end
 
-    it 'has invalid email with wrong format' do
-      contact = Contact.new(email: 'invalid email @')
-      expect(contact.validate_email).to include('Error')
-    end
+      it 'has invalid address with empty data ' do
+        contact = Contact.new(address: nil)
+        expect(contact.validate_address).to include('Error')
+      end
 
-    it 'has invalid credit card' do
-      contact = Contact.new(credit_card: '411111111111111')
-      expect(contact.validate_credit_card).to contain_exactly('Error: Invalid Credit card', nil)
-    end
+      it 'has invalid email with wrong format' do
+        contact = Contact.new(email: 'invalid email @')
+        expect(contact.validate_email).to include('Error')
+      end
 
+      it 'has invalid credit card' do
+        contact = Contact.new(credit_card: '411111111111111')
+        expect(contact.validate_credit_card).to include(nil)
+      end
+    end
   end
 
   context "search contacts by 'valid' scope" do
