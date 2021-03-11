@@ -2,6 +2,7 @@ class Contacts::CreateContactFromCSV
   require 'csv'
 
   def initialize(csv_file, current_user)
+    # @csv_file = Rails.env == 'test' ? "#{Rails.root.to_s}/public/test_csv.csv" : csv_file
     @csv_file = csv_file
     @current_user = current_user
   end
@@ -33,7 +34,7 @@ class Contacts::CreateContactFromCSV
       params[:user_id] = @current_user.id
 
       contact = Contacts::CreateContact.new(params, @current_user).process
-      
+
       contacts_count += 1 if contact.is_valid
       success = true if contacts_count >= 1
       success = false if contacts_count < 1

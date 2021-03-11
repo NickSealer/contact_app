@@ -39,4 +39,60 @@ RSpec.describe ContactsHelper, type: :helper do
     end
   end
 
+  describe 'error fields messages' do
+    context '#error_name_value' do
+      it "has no error in field" do
+        expect(error_name_value({})).to eq('')
+      end
+      it "has error in field" do
+        expect(error_name_value({"name": "Error"}.stringify_keys)).to include('Error')
+      end
+    end
+
+    context '#error_birthdate_value' do
+      it "has not error in field" do
+        expect(error_birthdate_value({})).to eq('')
+      end
+      it "has error in field" do
+        expect(error_birthdate_value({"birthdate": "Error"}.stringify_keys)).to include('Error')
+      end
+    end
+
+    context '#error_phone_value' do
+      it "has not error in field" do
+        expect(error_phone_value({})).to eq('')
+      end
+      it "has error in field" do
+        expect(error_phone_value({"phone": "Error"}.stringify_keys)).to include('Error')
+      end
+    end
+
+    context '#error_address_value' do
+      it "has not error in field" do
+        expect(error_address_value({})).to eq('')
+      end
+      it "has error in field" do
+        expect(error_address_value({"address": "Error"}.stringify_keys)).to include('Error')
+      end
+    end
+
+    context '#error_credit_card_value' do
+      it "has not error in field" do
+        expect(error_credit_card_value(Contact.new(import_errors: {}, brand: "VISA"))).to_not include('Error')
+      end
+      it "has error in field" do
+        expect(error_credit_card_value(Contact.new(import_errors: {"credit_card": "Error"}.stringify_keys))).to include('Error')
+      end
+    end
+
+    context '#error_email_value' do
+      it "has not error in field" do
+        expect(error_email_value({})).to eq('')
+      end
+      it "has error in field" do
+        expect(error_email_value({"email": "Error"}.stringify_keys)).to include('Error')
+      end
+    end
+  end
+
 end

@@ -1,0 +1,43 @@
+<table class="table table-hover">
+  <thead class="table-info">
+    <tr>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Credit card</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each_with_index do |contact, index| %>
+      <tr>
+        <td class="<%= contacts_error_color(contact.import_errors['name'].present?) %>">
+          <%= contact.name %>
+          <br><small><%= error_name_value(contact.import_errors) %></small>
+        </td>
+        <td class="<%= contacts_error_color(contact.import_errors['birthdate'].present?) %>">
+          <%= contact.birthdate ? formated_date(contact.birthdate) : '' %>
+          <br><small><%= error_birthdate_value(contact.import_errors) %></small>
+        </td>
+        <td class="<%= contacts_error_color(contact.import_errors['phone'].present?) %>">
+          <%= contact.phone %>
+          <br><small><%= error_phone_value(contact.import_errors) %></small>
+        </td>
+        <td class="<%= contacts_error_color(contact.import_errors['address'].present?) %>">
+          <%= contact.address %>
+          <br><small><%= error_address_value(contact.import_errors) %></small>
+        </td>
+        <td class="<%= contacts_error_color(contact.import_errors['credit_card'].present?) %>">
+          <%= contact.import_errors['credit_card'].present? ? contact.credit_card : retrieve_card(contact.credit_card) %>
+          <br><small><%= error_credit_card_value(contact) %></small>
+        </td>
+        <td class="<%= contacts_error_color(contact.import_errors['email'].present?) %>">
+          <%= contact.email %>
+          <br><small><%= error_email_value(contact.import_errors) %></small>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

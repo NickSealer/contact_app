@@ -1,49 +1,6 @@
 <div class="container-fluid py-3">
   <h1>My Contacts</h1>
-  <table class="table table-hover">
-    <thead class="table-info">
-      <tr>
-        <th>Name</th>
-        <th>Birthdate</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>Credit card</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @contacts.each_with_index do |contact, index| %>
-        <tr>
-          <td class="<%= contacts_error_color contact.import_errors['name'].present? %>">
-            <%= contact.name %>
-            <br><small><%= contact.import_errors['name'].present? ? contact.import_errors['name'] : '' %></small>
-          </td>
-          <td class="<%= contacts_error_color contact.import_errors['birthdate'].present? %>">
-            <%= contact.birthdate ? formated_date(contact.birthdate) : '' %>
-            <br><small><%= contact.import_errors['birthdate'].present? ? contact.import_errors['birthdate'] : '' %></small>
-          </td>
-          <td class="<%= contacts_error_color contact.import_errors['phone'].present? %>">
-            <%= contact.phone %>
-            <br><small><%= contact.import_errors['phone'].present? ? contact.import_errors['phone'] : '' %></small>
-          </td>
-          <td class="<%= contacts_error_color contact.import_errors['address'].present? %>">
-            <%= contact.address %>
-            <br><small><%= contact.import_errors['address'].present? ? contact.import_errors['address'] : '' %></small>
-          </td>
-          <td class="<%= contacts_error_color contact.import_errors['credit_card'].present? %>">
-            <%= contact.import_errors['credit_card'].present? ? contact.credit_card : retrieve_card(contact.credit_card) %>
-            <br><small><%= contact.import_errors['credit_card'].present? ? contact.import_errors['credit_card'] : contact.brand %></small>
-          </td>
-          <td class="<%= contacts_error_color contact.import_errors['email'].present? %>">
-            <%= contact.email %>
-            <br><small><%= contact.import_errors['email'].present? ? contact.import_errors['email'] : '' %></small>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+  <%= render 'contacts', contacts: @contacts %>
   <div class="digg_pagination">
     <%= will_paginate @contacts, :container => false %>
   </div>
