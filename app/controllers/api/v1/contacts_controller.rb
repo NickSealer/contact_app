@@ -1,6 +1,12 @@
 class Api::V1::ContactsController < ApplicationController
-  prepend_before_action :authenticate_user_from_token!
+  include DeviseTokenAuth::Concerns::SetUserByToken
+
+  prepend_before_action :authenticate_user!
   before_action :set_contact, only: %i[show update destroy]
+
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { error: e.message }, status: :not_found
+  end
 
   def index
     @contacts = current_user.contacts.order(created_at: :desc)
@@ -37,20 +43,8 @@ class Api::V1::ContactsController < ApplicationController
   end
 
   private
-
     def set_contact
       @contact = current_user.contacts.find(params[:id])
-    end
-
-    def authenticate_user_from_token!
-      user_email = params[:user_email].presence
-      user = user_email && User.find_by(email: user_email)
-      if user && Devise.secure_compare(user.authenticatable_salt, params[:user_token])
-        sign_in user, store: true
-      else
-        render json: { error: 'Authentication failed' }, status: :unauthorized
-        false
-      end
     end
 
     def contact_params

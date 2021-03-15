@@ -36,7 +36,7 @@ class Contacts::CreateContactFromCSV
       contact = Contacts::CreateContact.new(params, @current_user).process
 
       contacts_count += 1 if contact.is_valid
-      success = false unless contacts_count.blank?
+      success = false if contacts_count == 0
     end
     
     success

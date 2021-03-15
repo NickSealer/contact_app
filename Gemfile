@@ -8,6 +8,8 @@ gem 'rails', '~> 5.2.3'
 gem 'jquery-rails'
 # Use sqlite3 as the database for Active Record
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
 gem 'figaro'
 gem 'will_paginate', '~> 3.1.0'
 gem 'fastercsv'
