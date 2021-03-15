@@ -58,7 +58,7 @@ RSpec.describe ContactsController, type: :controller do
     end
 
     context 'no authorized user' do
-      it 'redirect to root_path' do
+      it 'redirects to root_path' do
         sign_in other_user
         get :show, params: { id: contact }
         expect(response).to redirect_to root_path
@@ -66,7 +66,7 @@ RSpec.describe ContactsController, type: :controller do
     end
 
     context 'no authenticate user' do
-      it 'redirect to sign_in' do
+      it 'redirects to sign_in' do
         get :show, params: { id: contact }
         expect(response).to have_http_status 302
         expect(response).to redirect_to new_user_session_path
@@ -91,7 +91,7 @@ RSpec.describe ContactsController, type: :controller do
         }.not_to change(user.contacts, :count)
       end
 
-      it 'redirect to sign_in' do
+      it 'redirects to sign_in' do
         post :create, params: { contact: contact_params }
         expect(response).to have_http_status 302
         expect(response).to redirect_to new_user_session_path
@@ -109,7 +109,7 @@ RSpec.describe ContactsController, type: :controller do
     end
 
     context 'no authenticate user' do
-      it 'redirect to sign_in' do
+      it 'redirects to sign_in' do
         get :new
         expect(response).to have_http_status 302
         expect(response).to redirect_to new_user_session_path
@@ -135,7 +135,7 @@ RSpec.describe ContactsController, type: :controller do
         expect(contact.reload.name).not_to eq('Name updated from test')
       end
 
-      it 'redirect to root_path' do
+      it 'redirects to root_path' do
         sign_in other_user
         put :update, params: { id: contact, contact: contact_params }
         expect(response).to have_http_status 302
@@ -167,15 +167,17 @@ RSpec.describe ContactsController, type: :controller do
       end
     end
 
-    context 'no authenticate user' do
-      it 'no authorized user' do
+    context 'no authorized user' do
+      it 'redirects to root_path' do
         sign_in other_user
         get :edit, params: { id: contact }
         expect(response).to have_http_status 302
         expect(response).to redirect_to root_path
       end
+    end
 
-      it 'redirect to sign_in' do
+    context 'no authenticate user' do
+      it 'redirects to sign_in' do
         get :edit, params: { id: contact }
         expect(response).to have_http_status 302
         expect(response).to redirect_to new_user_session_path
@@ -201,7 +203,7 @@ RSpec.describe ContactsController, type: :controller do
         }.not_to change(user.contacts, :count)
       end
 
-      it 'redirect to root_path' do
+      it 'redirects to root_path' do
         sign_in other_user
         delete :destroy, params: { id: contact_to_delete }
         expect(response).to redirect_to root_path
@@ -215,7 +217,7 @@ RSpec.describe ContactsController, type: :controller do
         }.not_to change(user.contacts, :count)
       end
 
-      it 'redirect to sign_in' do
+      it 'redirects to sign_in' do
         delete :destroy, params: { id: contact_to_delete }
         expect(response).to have_http_status 302
         expect(response).to redirect_to new_user_session_path
@@ -239,7 +241,7 @@ RSpec.describe ContactsController, type: :controller do
   end
 
   context 'no authenticate user' do
-    it 'unauthorized' do
+    it 'returns unauthorized status' do
       get :download_csv, format: :csv
       expect(response).to have_http_status 401
     end
@@ -264,7 +266,7 @@ RSpec.describe ContactsController, type: :controller do
     end
 
     context 'no authenticate user' do
-      it 'redirect_to sign_in' do
+      it 'redirects to sign_in' do
         post :import_csv, params: { csv_file: document }
         expect(response).to have_http_status 302
         expect(response).to redirect_to new_user_session_path

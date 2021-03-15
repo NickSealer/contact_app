@@ -11,10 +11,6 @@ RSpec.describe LoadFileJob, type: :job do
 
   describe '#perform' do
     context 'calls the job' do
-      it 'document Waiting status' do
-        expect(document.status).to eq('Waiting')
-      end
-
       it 'document was enqueued' do
         expect {
           LoadFileJob.perform_later(document, user)
