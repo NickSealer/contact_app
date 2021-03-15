@@ -5,12 +5,6 @@ class Contact < ApplicationRecord
 
   validate :valid_contact?
 
-  # This validation is just for validate correct unit test on
-  # contacts_controller_spec 108
-  # create_contact_spec service 19
-  # update_contact_spec service 20
-  validates :name, presence: true, if: -> { Rails.env == 'test' }
-
   scope :valid, -> { where(is_valid: true) }
 
   def valid_contact?

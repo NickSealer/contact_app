@@ -7,7 +7,8 @@ class LoadFileJob < ApplicationJob
 
     document.update_attributes(status: "Processing")
     success = Contacts::CreateContactFromCSV.new(url, current_user).process
-    document.update_attributes(status: "Success") if success
-    document.update_attributes(status: "Failed") unless success
+    status = success ? "Success" : "Failed"
+    document.update_attributes(status: status)
   end
+
 end

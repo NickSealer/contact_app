@@ -13,29 +13,29 @@
   <tbody>
     <% @contacts.each_with_index do |contact, index| %>
       <tr>
-        <td class="<%= contacts_error_color(contact.import_errors['name'].present?) %>">
+        <td class="<%= contacts_error_color(contact, 'name') %>">
           <%= contact.name %>
-          <br><small><%= error_name_value(contact.import_errors) %></small>
+          <br><small><%= error_value(contact, 'name') %></small>
         </td>
-        <td class="<%= contacts_error_color(contact.import_errors['birthdate'].present?) %>">
+        <td class="<%= contacts_error_color(contact, 'birthdate') %>">
           <%= contact.birthdate ? formated_date(contact.birthdate) : '' %>
-          <br><small><%= error_birthdate_value(contact.import_errors) %></small>
+          <br><small><%= error_value(contact, 'birthdate') %></small>
         </td>
-        <td class="<%= contacts_error_color(contact.import_errors['phone'].present?) %>">
+        <td class="<%= contacts_error_color(contact, 'phone' ) %>">
           <%= contact.phone %>
-          <br><small><%= error_phone_value(contact.import_errors) %></small>
+          <br><small><%= error_value(contact, 'phone') %></small>
         </td>
-        <td class="<%= contacts_error_color(contact.import_errors['address'].present?) %>">
+        <td class="<%= contacts_error_color(contact, 'address') %>">
           <%= contact.address %>
-          <br><small><%= error_address_value(contact.import_errors) %></small>
+          <br><small><%= error_value(contact, 'address') %></small>
         </td>
-        <td class="<%= contacts_error_color(contact.import_errors['credit_card'].present?) %>">
+        <td class="<%= contacts_error_color(contact, 'credit_card') %>">
           <%= contact.import_errors['credit_card'].present? ? contact.credit_card : retrieve_card(contact.credit_card) %>
           <br><small><%= error_credit_card_value(contact) %></small>
         </td>
-        <td class="<%= contacts_error_color(contact.import_errors['email'].present?) %>">
+        <td class="<%= contacts_error_color(contact, 'email') %>">
           <%= contact.email %>
-          <br><small><%= error_email_value(contact.import_errors) %></small>
+          <br><small><%= error_value(contact, 'email') %></small>
         </td>
       </tr>
     <% end %>

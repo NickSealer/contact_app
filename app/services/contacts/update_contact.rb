@@ -1,19 +1,11 @@
 class Contacts::UpdateContact
-
   def initialize(contact, params)
     @contact = contact
-    @params = params
+    @params = params.merge(import_errors: {})
   end
 
   def process
-    @contact.import_errors = {}
-    @contact.name = @params[:name]
-    @contact.birthdate = @params[:birthdate]
-    @contact.phone = @params[:phone]
-    @contact.address = @params[:address]
-    @contact.credit_card = @params[:credit_card]
-    @contact.email = @params[:email]
-    @contact.save
+    @contact.update(@params)
   end
 
 end

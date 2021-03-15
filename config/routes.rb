@@ -7,7 +7,12 @@ Rails.application.routes.draw do
       post :import_csv
     end
   end
-  resources :documents, :only => [ :index]
-  # get '/contact/contacts-layout-csv', to: 'contacts#download_csv', as: 'contact_layout_csv'
-  # post '/contact/import-csv', to: 'contacts#import_csv', as: "import_contact_csv"
+  resources :documents, only: [ :index]
+
+  namespace 'api' do
+    namespace 'v1' do
+      resources :contacts, except: [:new, :edit]
+    end
+  end
+
 end

@@ -8,32 +8,16 @@ module ContactsHelper
     "●●●●●●●●#{number[number.size-4..number.size-1]}"
   end
 
-  def contacts_error_color(truly)
-    truly ? "table-danger" : ''
+  def contacts_error_color(contact, field)
+    contact.import_errors[field].present? ? "table-danger" : ''
   end
 
-  def error_name_value(import_errors)
-    import_errors['name'].present? ? import_errors['name'] : ''
-  end
-
-  def error_birthdate_value(import_errors)
-    import_errors['birthdate'].present? ? import_errors['birthdate'] : ''
-  end
-
-  def error_phone_value(import_errors)
-    import_errors['phone'].present? ? import_errors['phone'] : ''
-  end
-
-  def error_address_value(import_errors)
-    import_errors['address'].present? ? import_errors['address'] : ''
+  def error_value(contact, field)
+    contact.import_errors[field].present? ? contact.import_errors[field] : ''
   end
 
   def error_credit_card_value(contact)
     contact.import_errors['credit_card'].present? ? contact.import_errors['credit_card'] : contact.brand
-  end
-
-  def error_email_value(import_errors)
-    import_errors['email'].present? ? import_errors['email'] : ''
   end
 
   private
