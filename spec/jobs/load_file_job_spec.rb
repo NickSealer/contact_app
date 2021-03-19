@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LoadFileJob, type: :job do
   let(:user) { FactoryBot.create(:user) }
   let!(:document) { FactoryBot.create(:document, user: user) }
-  let(:csv_text) { "name,birthdate,phone,address,credit_card,email\nPedro Rosas,1986/12/20,(+57) 123-123-11-32,Calle 15 # 43 -8,5274 5763 9425 9961,pedro@gmail.com\n" }
+  let(:csv_text) do
+    "name,birthdate,phone,address,credit_card,email\nPedro Rosas,1986/12/20,(+57) 123-123-11-32,Calle 15 # 43 -8,5274 5763 9425 9961,pedro@gmail.com\n"
+  end
 
   before do
     ActiveJob::Base.queue_adapter = :test
@@ -12,9 +16,9 @@ RSpec.describe LoadFileJob, type: :job do
   describe '#perform' do
     context 'calls the job' do
       it 'document was enqueued' do
-        expect {
+        expect do
           LoadFileJob.perform_later(document, user)
-        }.to have_enqueued_job
+        end.to have_enqueued_job
       end
 
       it 'job called once' do

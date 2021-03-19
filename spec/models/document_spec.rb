@@ -1,52 +1,50 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Document, type: :model do
   let(:user) { FactoryBot.create(:user) }
   let(:document) { FactoryBot.build(:document, user: user) }
-  let(:invalid_document) { FactoryBot.build(:document, :invalid_document, user: user) }
 
-  describe 'validations' do
-    context 'has name' do
-      it 'has valid name' do
-        expect(document.name).not_to be_nil
-      end
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should have_one_attached(:file) }
+  end
 
-      it 'has invalid name' do
-        invalid_document.valid?
-        expect(invalid_document.errors[:name]).to include("can't be blank")
-      end
+  describe 'field validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:status) }
+  end
+
+  describe 'document has right status' do
+    it 'has Waiting status' do
+      expect(document.status).to eq('Waiting')
     end
 
-    context 'has status' do
-      it 'has valid status' do
-        expect(document.status).not_to be_nil
-      end
-
-      it 'has invalid status' do
-        invalid_document.valid?
-        expect(invalid_document.errors[:status]).to include("can't be blank")
-      end
+    it 'has Processing status' do
+      document = FactoryBot.build(:document, :processing)
+      expect(document.status).to eq('Processing')
     end
 
-    context 'document statuses' do
-      it 'has Waiting status' do
-        expect(document.status).to eq('Waiting')
-      end
+    it 'has Success status' do
+      document = FactoryBot.build(:document, :success)
+      expect(document.status).to eq('Success')
+    end
 
-      it 'has Processing status' do
-        document = FactoryBot.build(:document, :processing)
-        expect(document.status).to eq('Processing')
-      end
+    it 'has Failed status' do
+      document = FactoryBot.build(:document, :failed)
+      expect(document.status).to eq('Failed')
+    end
+  end
 
-      it 'has Success status' do
-        document = FactoryBot.build(:document, :success)
-        expect(document.status).to eq('Success')
-      end
+  describe 'validates document factory' do
+    it 'valid document' do
+      expect(document.valid?).to be(true)
+    end
 
-      it 'has Failed status' do
-        document = FactoryBot.build(:document, :failed)
-        expect(document.status).to eq('Failed')
-      end
+    it "invalid document" do
+      invalid_document = FactoryBot.build(:document, :invalid_document, user: user)
+      expect(invalid_document.valid?).to be(false)
     end
   end
 end

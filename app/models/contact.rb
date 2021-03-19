@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Contac model definition
 class Contact < ApplicationRecord
   require 'bcrypt'
 
@@ -44,7 +47,7 @@ class Contact < ApplicationRecord
   end
 
   def validate_email
-    return if !email.blank? && email.match?(/^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/)
+    return if !email.blank? && email.match?(URI::MailTo::EMAIL_REGEXP)
 
     import_errors[:email] = 'Error: Invalid email'
   end
@@ -54,26 +57,25 @@ class Contact < ApplicationRecord
     if !credit_card.blank? && validator.valid?
       self.credit_card = encrypt_number(validator.number)
       self.brand = validator.brand.to_s
-      [credit_card, brand]
     else
       import_errors[:credit_card] = 'Error: Invalid Credit card'
       import_errors[:brand] = 'Error: Invalid brand'
-      [credit_card, brand]
     end
+    [credit_card, brand]
   end
 
   private
 
-    def valid_date(date)
-      Date.parse(date).strftime('%F')
-    rescue StandardError
-      Date.today.next_year.strftime('%F')
-    end
+  def valid_date(date)
+    Date.parse(date).strftime('%F')
+  rescue StandardError
+    Date.today.next_year.strftime('%F')
+  end
 
-    def encrypt_number(number)
-      encriptor = BCrypt::Password.create(number)
-      encriptor = encriptor.chars.shuffle.join('')
-      encriptor += number[number.size - 4..number.size - 1]
-      encriptor
-    end
+  def encrypt_number(number)
+    encriptor = BCrypt::Password.create(number)
+    encriptor = encriptor.chars.shuffle.join('')
+    encriptor += number[number.size - 4..number.size - 1]
+    encriptor
+  end
 end

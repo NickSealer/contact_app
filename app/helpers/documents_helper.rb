@@ -1,16 +1,14 @@
+# frozen_string_literal: true
+
+# Helpers for documents
 module DocumentsHelper
-
   def status_color(value)
-    case value
-    when "Success"
-      "table-success"
-    when "Failed"
-      "table-danger"
-    when "Waiting"
-      "table-secondary"
-    when "Processing"
-      "table-primary"
-    end
+    statuses = {
+      'Success': 'table-success',
+      'Failed': 'table-danger',
+      'Waiting': 'table-secondary',
+      'Processing': 'table-primary'
+    }
+    statuses[value.to_sym]
   end
-
 end

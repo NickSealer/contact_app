@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ContactsController, type: :controller do
@@ -78,17 +80,17 @@ RSpec.describe ContactsController, type: :controller do
     context 'authenticate user' do
       it 'creates a contact' do
         sign_in user
-        expect {
+        expect do
           post :create, params: { contact: contact_params }
-        }.to change(user.contacts, :count).by 1
+        end.to change(user.contacts, :count).by 1
       end
     end
 
     context 'no authenticate user' do
       it 'does not create a contact' do
-        expect {
+        expect do
           post :create, params: { contact: contact_params }
-        }.not_to change(user.contacts, :count)
+        end.not_to change(user.contacts, :count)
       end
 
       it 'redirects to sign_in' do
@@ -189,18 +191,18 @@ RSpec.describe ContactsController, type: :controller do
     context 'authenticate user' do
       it 'deletes a contact' do
         sign_in user
-        expect {
+        expect do
           delete :destroy, params: { id: contact_to_delete }
-        }.to change(user.contacts, :count).by(-1)
+        end.to change(user.contacts, :count).by(-1)
       end
     end
 
     context 'no authorized user' do
       it 'does not delete a contact' do
         sign_in other_user
-        expect {
+        expect do
           delete :destroy, params: { id: contact_to_delete }
-        }.not_to change(user.contacts, :count)
+        end.not_to change(user.contacts, :count)
       end
 
       it 'redirects to root_path' do
@@ -212,9 +214,9 @@ RSpec.describe ContactsController, type: :controller do
 
     context 'no authenticate user' do
       it 'does not delete a contact' do
-        expect {
+        expect do
           delete :destroy, params: { id: contact_to_delete }
-        }.not_to change(user.contacts, :count)
+        end.not_to change(user.contacts, :count)
       end
 
       it 'redirects to sign_in' do

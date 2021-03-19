@@ -1,30 +1,31 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'validations' do
-    context 'is valid data' do
-      it 'is valid with email and password' do
-        user = FactoryBot.build(:user)
-        expect(user).to be_valid
-      end
+  describe 'associations' do
+    it { should have_many(:contacts) }
+    it { should have_many(:documents) }
+  end
+
+  describe 'field validations' do
+    it { should validate_presence_of(:email) }
+    # should validate_uniqueness_of(:email).scoped_to(:provider).case_insensitive
+    it 'has duplicate email' do
+      user = FactoryBot.create(:user, :duplicate_email)
+      expect(user.errors[:email]).not_to include('has already been taken')
+    end
+  end
+
+  describe 'validates user factory' do
+    it 'valid user' do
+      user = FactoryBot.build(:user)
+      expect(user.valid?).to be(true)
     end
 
-    context 'has invalid data' do
-      it 'is invalid without an email' do
-        user = FactoryBot.build(:user, :no_email)
-        user.valid?
-        expect(user.errors[:email]).to include("can't be blank")
-      end
-
-      it 'has duplicate email' do
-        user = FactoryBot.build(:user, :duplicate_email)
-        expect(user.errors[:email]).not_to include('has already been taken')
-      end
-    end
-
-    it 'generate user with contacts' do
-      user = FactoryBot.create(:user, :with_contacts)
-      expect(user.contacts.count).to_not eq 0
+    it 'invalid user' do
+      user = FactoryBot.build(:user, :no_email)
+      expect(user.valid?).to be(false)
     end
   end
 end

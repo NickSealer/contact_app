@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-include ActionDispatch::TestProcess
 
 RSpec.describe Documents::CreateDocument, type: :model do
+  include ActionDispatch::TestProcess
+
   let(:user) { FactoryBot.create(:user) }
   let(:params) { { csv_file: fixture_file_upload("#{Rails.root}/public/test_csv.csv", 'text/csv') } }
 

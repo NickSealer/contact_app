@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::ContactsController, type: :request do
@@ -6,8 +8,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
   let(:other_user) { FactoryBot.create(:user) }
   let(:contacts) { user.contacts }
   let(:contact) { contacts.first }
-  let(:auth_params) { user.create_new_auth_token } #simulate login user retrieving auth headers
-
+  let(:auth_params) { user.create_new_auth_token } # simulate login user retrieving auth headers
 
   describe '#index' do
     context 'authenticate user' do
@@ -31,7 +32,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
 
   describe '#show' do
     context 'authenticate user' do
-      it "retrieves a contact" do
+      it 'retrieves a contact' do
         get api_v1_contact_path(contact), headers: auth_params
         expect(response).to have_http_status 200
         expect(response.content_type).to eq('application/json')
@@ -57,7 +58,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
 
   describe '#create' do
     context 'authenticate user' do
-      it "creates a contact" do
+      it 'creates a contact' do
         post api_v1_contacts_path, params: { contact: contact_params }, headers: auth_params
         expect(response).to have_http_status 200
         expect(response.content_type).to eq('application/json')
@@ -76,9 +77,9 @@ RSpec.describe Api::V1::ContactsController, type: :request do
 
   describe '#update' do
     context 'authenticate user' do
-      it "updates a contact" do
-        contact_params[:name] = "Updating the name"
-        contact_params[:address] = "Address changed"
+      it 'updates a contact' do
+        contact_params[:name] = 'Updating the name'
+        contact_params[:address] = 'Address changed'
         put api_v1_contact_path(contact), params: { id: contact, contact: contact_params }, headers: auth_params
         expect(response).to have_http_status 200
         expect(response.content_type).to eq('application/json')
@@ -104,7 +105,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
 
   describe '#destroy' do
     context 'authenticate user' do
-      it "deletes a contact" do
+      it 'deletes a contact' do
         delete api_v1_contact_path(contact), params: { id: contact }, headers: auth_params
         expect(response).to have_http_status 200
         expect(response.content_type).to eq('application/json')
@@ -127,5 +128,4 @@ RSpec.describe Api::V1::ContactsController, type: :request do
       end
     end
   end
-
 end
