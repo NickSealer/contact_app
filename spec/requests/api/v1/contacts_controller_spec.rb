@@ -17,6 +17,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
         get api_v1_contacts_path, headers: auth_params
         expect(response).to have_http_status 200
         expect(response.content_type).to eq('application/json')
+        expect(response).to have_content_type(:json)
         expect(JSON.parse(response.body)).to_not include('error')
       end
     end
