@@ -1,7 +1,42 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/controllers/contacts_controller_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/support/matchers/content_type.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1
+        ]
+      },
+      "/Users/nickfontecha/koombea/contact_app/spec/controllers/contacts_controller_spec.rb": {
         "lines": [
           null,
           null,
@@ -283,7 +318,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/rails_helper.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/rails_helper.rb": {
         "lines": [
           null,
           null,
@@ -354,7 +389,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/environment.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/environment.rb": {
         "lines": [
           null,
           null,
@@ -365,7 +400,7 @@
           1
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/application.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/application.rb": {
         "lines": [
           null,
           null,
@@ -400,7 +435,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/boot.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/boot.rb": {
         "lines": [
           null,
           null,
@@ -410,7 +445,7 @@
           1
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/environments/test.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/environments/test.rb": {
         "lines": [
           null,
           null,
@@ -462,7 +497,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/application_controller_renderer.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/application_controller_renderer.rb": {
         "lines": [
           null,
           null,
@@ -475,7 +510,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/assets.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/assets.rb": {
         "lines": [
           null,
           null,
@@ -495,7 +530,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/backtrace_silencers.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/backtrace_silencers.rb": {
         "lines": [
           null,
           null,
@@ -507,7 +542,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/content_security_policy.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/content_security_policy.rb": {
         "lines": [
           null,
           null,
@@ -537,7 +572,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/cookies_serializer.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/cookies_serializer.rb": {
         "lines": [
           null,
           null,
@@ -548,7 +583,7 @@
           1
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/devise.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/devise.rb": {
         "lines": [
           null,
           null,
@@ -863,7 +898,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/devise_token_auth.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/devise_token_auth.rb": {
         "lines": [
           null,
           null,
@@ -927,7 +962,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/filter_parameter_logging.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/filter_parameter_logging.rb": {
         "lines": [
           null,
           null,
@@ -937,7 +972,7 @@
           1
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/inflections.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/inflections.rb": {
         "lines": [
           null,
           null,
@@ -958,7 +993,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/mime_types.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/mime_types.rb": {
         "lines": [
           null,
           null,
@@ -967,7 +1002,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/initializers/wrap_parameters.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/initializers/wrap_parameters.rb": {
         "lines": [
           null,
           null,
@@ -987,7 +1022,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/factories/contacts.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/factories/contacts.rb": {
         "lines": [
           null,
           null,
@@ -1017,7 +1052,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/factories/documents.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/factories/documents.rb": {
         "lines": [
           null,
           null,
@@ -1050,7 +1085,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/factories/users.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/factories/users.rb": {
         "lines": [
           null,
           null,
@@ -1074,7 +1109,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/config/routes.rb": {
+      "/Users/nickfontecha/koombea/contact_app/config/routes.rb": {
         "lines": [
           null,
           null,
@@ -1098,7 +1133,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/models/user.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/models/user.rb": {
         "lines": [
           null,
           null,
@@ -1112,11 +1147,10 @@
           1,
           null,
           1,
-          1,
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/models/application_record.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/models/application_record.rb": {
         "lines": [
           null,
           null,
@@ -1126,7 +1160,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/helpers/application_helper.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/helpers/application_helper.rb": {
         "lines": [
           null,
           null,
@@ -1135,7 +1169,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/helpers/contacts_helper.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/helpers/contacts_helper.rb": {
         "lines": [
           null,
           null,
@@ -1175,7 +1209,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/helpers/documents_helper.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/helpers/documents_helper.rb": {
         "lines": [
           null,
           null,
@@ -1193,7 +1227,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/controllers/contacts_controller.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/controllers/contacts_controller.rb": {
         "lines": [
           null,
           null,
@@ -1277,7 +1311,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/controllers/application_controller.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/controllers/application_controller.rb": {
         "lines": [
           null,
           null,
@@ -1286,7 +1320,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/controllers/documents_controller_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/controllers/documents_controller_spec.rb": {
         "lines": [
           null,
           null,
@@ -1316,7 +1350,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/controllers/documents_controller.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/controllers/documents_controller.rb": {
         "lines": [
           null,
           null,
@@ -1330,7 +1364,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/helpers/contacts_helper_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/helpers/contacts_helper_spec.rb": {
         "lines": [
           null,
           null,
@@ -1401,7 +1435,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/helpers/documents_helper_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/helpers/documents_helper_spec.rb": {
         "lines": [
           null,
           null,
@@ -1419,7 +1453,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/jobs/load_file_job_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/jobs/load_file_job_spec.rb": {
         "lines": [
           null,
           null,
@@ -1465,7 +1499,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/jobs/load_file_job.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/jobs/load_file_job.rb": {
         "lines": [
           null,
           null,
@@ -1485,7 +1519,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/jobs/application_job.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/jobs/application_job.rb": {
         "lines": [
           null,
           null,
@@ -1493,7 +1527,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/models/contact_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/models/contact_spec.rb": {
         "lines": [
           null,
           null,
@@ -1586,7 +1620,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/models/contact.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/models/contact.rb": {
         "lines": [
           null,
           null,
@@ -1671,7 +1705,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/models/document_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/models/document_spec.rb": {
         "lines": [
           null,
           null,
@@ -1725,7 +1759,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/models/document.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/models/document.rb": {
         "lines": [
           null,
           null,
@@ -1738,7 +1772,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/models/user_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/models/user_spec.rb": {
         "lines": [
           null,
           null,
@@ -1752,7 +1786,7 @@
           null,
           1,
           2,
-          null,
+          2,
           1,
           1,
           1,
@@ -1773,7 +1807,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/requests/api/v1/contacts_controller_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/requests/api/v1/contacts_controller_spec.rb": {
         "lines": [
           null,
           null,
@@ -1795,6 +1829,7 @@
           1,
           1,
           1,
+          1,
           null,
           null,
           null,
@@ -1908,7 +1943,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/controllers/api/v1/contacts_controller.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/controllers/api/v1/contacts_controller.rb": {
         "lines": [
           null,
           null,
@@ -1973,7 +2008,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/services/contacts/create_contact_from_csv_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/services/contacts/create_contact_from_csv_spec.rb": {
         "lines": [
           null,
           null,
@@ -1998,7 +2033,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/services/contacts/create_contact_from_csv.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/services/contacts/create_contact_from_csv.rb": {
         "lines": [
           null,
           null,
@@ -2051,7 +2086,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/services/contacts/create_contact_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/services/contacts/create_contact_spec.rb": {
         "lines": [
           null,
           null,
@@ -2078,7 +2113,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/services/contacts/create_contact.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/services/contacts/create_contact.rb": {
         "lines": [
           null,
           null,
@@ -2108,7 +2143,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/services/contacts/update_contact_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/services/contacts/update_contact_spec.rb": {
         "lines": [
           null,
           null,
@@ -2129,7 +2164,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/services/contacts/update_contact.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/services/contacts/update_contact.rb": {
         "lines": [
           null,
           null,
@@ -2148,7 +2183,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/spec/services/documents/create_document_spec.rb": {
+      "/Users/nickfontecha/koombea/contact_app/spec/services/documents/create_document_spec.rb": {
         "lines": [
           null,
           null,
@@ -2178,7 +2213,7 @@
           null
         ]
       },
-      "/home/dovahkiin/Documentos/projects/contact_app/app/services/documents/create_document.rb": {
+      "/Users/nickfontecha/koombea/contact_app/app/services/documents/create_document.rb": {
         "lines": [
           null,
           null,
@@ -2206,6 +2241,6 @@
         ]
       }
     },
-    "timestamp": 1616192459
+    "timestamp": 1619990850
   }
 }
