@@ -27,7 +27,7 @@
 
 
 # PARA HEROKU
-Postgreslq configs
+# Postgreslq configs
 
 default: &default
   adapter: postgresql
